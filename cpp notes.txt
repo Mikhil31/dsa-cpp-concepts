@@ -1,0 +1,101 @@
+identfiers are any names that we provide in cpp, i.e, names of objects, classes, functions etc...
+
+ "cout >>" is used read line and "cin <<" is used to read line
+
+keywords are reserved and have special meaning to the compiler and cannot be used anywhere by the use, eg: print, int, namespace, class etc...
+
+reserved identfiers are identfiers that are already defined during compiler design eg: main, include etcc.. they can be used in as identfiers.
+
+to find array size dynamicall use auto i : arr
+
+auto keyword is used to declare a variable with its type automatically deduced by the compiler based on the value assigned to it.
+
+
+pointers are address to a variable, if var is stored at 1008 then int *p_var will be 1008, i.e, the address of the variable.
+
+int*, int * ptr and int *ptr are all the same.
+
+    int a=50;
+    int *ptr=&a;
+this is called referencing a pointer
+*ptr basically points to address of a, to assign the addr of var a to ptr we use &a
+    cout<<ptr<<endl;
+
+this directly changes value of the address, so if a is refered after changing it changes address of a directly, rather than changing a
+   
+    *ptr=60;
+
+this is called dereferencing a pointer
+it gets the goes to address of ptr and points to address stored in ptr and gets value from there.
+    cout<<*ptr<<endl;
+    cout<<a<<endl;
+
+ALWAYS INITIALIZE A VAR AND THEN A POINTER TO IT, never assign values to just pointers, it might cause bugs and run time errors.
+
+nullptr command does not point the pointer anywhere
+    int *ptr=nullptr;
+
+if a var is of int or double etc, the pointer must also be of the same type, otherwise compiler error   
+
+void* ptr can store pointer of any type of variable, to print address of char we use void* ptr temprorarily
+
+memory managment unit helps in mapping virtual addr that program thinks it has to irl ram memory, done so to save space.
+
+The memory map is a standard format defined by the OS. All programs written for that OS must conform to it. It is usually divided into some sections
+
+memory map: has stack, heap, data, text etc.. the stack has constant var such as int a, double b etc... 
+heap is dynamically allocated using malloc(), in heap the var assigned will exist with same name till it's explicitly assigned to different one or cancelled
+
+to dynamically allocate use new eg
+int a=77;
+int *ptr=new int;
+*ptr= a;
+not &a coz not storing address but a itself
+
+exit():
+
+When a user wants to exit a program from this function is used.
+It is a void return type function that calls all functions registered at the exit and terminates the program.
+File buffers are flushed, streams are closed, and temporary files are deleted and hence memory is freed.
+
+
+
+break():
+
+This function is generally used to come out of a loop at the instant.
+When a break statement is executed it transfers the control to the statements that follow the switch or loop.
+
+
+SWTICH is used in place of multiple if-else blocks, after every switch condition we use break; or exit() [in case of infinite loops]
+ 
+continue cannot be used inside a switch block
+
+functions exist just to cut short the time taken/ no of LOC
+function is a well defined task
+
+#include <iostream>
+using namespace std;
+int power()
+{
+    int a, b, ans =1;
+    cin >> a >> b;
+
+    for (int i = 1; i <= b; i++)
+    {
+        ans = ans * a;
+    }
+    cout << "res is: " << ans << endl;
+    return 0;
+}
+
+using namespace std;
+
+int main()
+{
+    int a, b;
+    power();
+}
+
+//Here a and b var in main are local only to main func and won't work if called outside, similarly a,b and ans in power function is available locally only to power()
+
+stuff like this reduces code redundancy, instead of defining power again and again we can just define it ocne and call it in main, or we can use a for loop to continously give values

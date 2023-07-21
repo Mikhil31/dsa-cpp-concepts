@@ -1,0 +1,126 @@
+    int a='a';
+    cout<<a<<endl;
+it prints ASCII value of the a (95)
+
+ 
+For all -ve numbers cpp converts it to binary by ignoring -ve sign and then converts that into 2's complement and then stores that and the MSB is set to 1 and while reading it checks that and then updates that also
+
+To find primes any iteration beyond n/2 (n=number given) is meaningless 
+
+
+For patterns read no of rows and no of col and find pattern.. and then derive formula from that 
+Use only one or * in cout, the rest should be inside for loops 
+eg: Print "* * * *" 4 times, instead wrting that in one while loop along with i we write it in 2 while 
+    int i = 1;
+    while (i <= 4)
+    {
+        int j = 1;
+        while (j <= 4)
+        {
+            cout << "*";
+        }
+        cout << "/n";
+        i++;
+    }
+
+
+Bitwise Operators: &, <<, >>, |, ^
+
+    //a AND b for 4 and 6 (100 & 110 we get 100)
+    cout << "a&b" << (a & b) << endl;
+    //output: 4
+
+
+    //a OR b for 4 and 6 (100 & 110 we get 110)
+    cout << "a|b" << (a & b) << endl;
+    //output: 6
+
+
+    // NOT(a) [Flip 1s and 0s] for 4 (100 we get 011) for 6 (110 we get 001)    
+    cout << "~a" << (a & b) << endl;
+    //output: -5
+    //NOT will flip all the bytes, so 000...100 (which is 4) if NOT is added will be flippeed to (the first  one on right is MSB)111...011 etc
+
+    //when compiler reads this, it sees the MSB (and there's 1 there) so it takes 1's complement so inverts bits again, so 000...100 
+
+    //now takes 2's complement so adds 1 to LSB, so 000...100+1 = 000..101
+    which is read as -5 (coz initially it saw 1 and assumed it was -ve)
+
+
+
+    // a XOR b [0-1 or 1-0 is 1 but 0-0 or 1-1 is 0] for 4^6 (100^110 we get 010 )
+    cout << "a^b" << (a & b) << endl;
+    //output: 2
+
+
+IN BOTH LEFT AND RIGHT SHIFTS THE NUMBERS ADDED ON EITHER SIDES WILL BE 0 FOR +VE NUMBERS (i.e, 3<<2 or 5<<1 after shifting the extra space formed/deleted will have 0's in it)
+
+BUT FOR -VE NUMBERS IT'S DEPENDENT ON THE COMPILER
+
+<< is for left shift 
+ eg: 3<<2 is same as telling the left most part of the number to shift left twice (will shift even if they are 0's)
+
+GENERALLY num<<1 WILL BE num*2, FOR SMALL NUMBERS, AS THEY LARGER THEY DIVERGE
+
+(if there's a large num, eg: one that occupies all the bit of int datatype, on left shift, that one bit that occupies the last place will shift to -ve spot and therefore give -ve number)
+
+
+   for 3<<2:    000...011 << 2 we get  000...1100 (both the 1's are shifted 2 times towards left)
+   000...1100 is 12
+
+   for 5<<2:   000...101 << 1 we get 000...1010 (the 101 is shifted one digit towardss left) so 10
+
+    cout << "5<<1 " << (5 << 1) << endl;
+    //output: 10
+    
+    cout << "3<<2 " << (3 << 2) << endl;
+    // output: 12
+
+    cout << "3<<1 " << (3 << 1) << endl;
+    // output: 6
+
+    cout << "6<<1 " << (6 << 1) << endl;
+    // output: 12
+    
+    cout << "7<<1 " << (7 << 1) << endl;
+    // output: 14 
+
+
+
+>> is for right shift 
+ eg: 3>>2 is same as telling the right most part of the number to shift right twice 
+
+
+GENERALLY num>>1 WILL BE num/2 (for num>>2 will be num/(2*2)), FOR SMALL NUMBERS, so for 3>>2 we have 0 on int division and for 5>>2 we have 5/4 which gives 1 on int division
+
+ for 3>>2:    000...011 >> 2 we get  000...000 (both the 1's are shifted 2 times towards right and therefore deleted)
+   000...0000 is 0
+
+ for 5>>2:    000...101 >> 2 we get  000...001 (the 01 in the end is shifted 2 times towards right and therefore deleted)
+   000...0001 is 1
+
+    cout << "5>>1 " << (5 >> 1) << endl;
+    // output: 2
+
+    cout << "3>>2 " << (3 >> 2) << endl;
+    // output: 0
+
+    cout << "3>>1 " << (3 >> 1) << endl;
+    // output: 1
+
+    cout << "6>>1 " << (6 >> 1) << endl;
+    // output: 3
+
+    cout << "7>>1 " << (7 >> 1) << endl;
+    // output: 3
+
+
+break; comes out of the entire statement inside a for loop
+continue; will continue the statement (i.e, if we wnat to skip an iteration etc..)
+
+
+1. To reverse integers first divide them by 2 store remainder
+2. divide the resulting quotient with 2 and store remainder
+3. Repeat process till we get 1 or 0 in the end 
+4. reverse the string
+
