@@ -99,3 +99,31 @@ int main()
 //Here a and b var in main are local only to main func and won't work if called outside, similarly a,b and ans in power function is available locally only to power()
 
 stuff like this reduces code redundancy, instead of defining power again and again we can just define it ocne and call it in main, or we can use a for loop to continously give values
+
+
+function call stack indicates/ tells us that functions inside are being called as in a stack data structure format
+
+eg: in finding nCr we have 3 functions main,nCr(to find ncr) and factorial 
+
+so in this initially stack will have 
+
+        |factorial| 
+        | nCr func|     (pops out factorial(), to calc factorial values)
+        |main func| 
+
+
+        (factorial gives output to nCr function)
+
+        | nCr func|     (pops out nCr, to calc nCr value)
+        |main func| 
+
+
+        (nCr gives output to main function)
+                        (pops out main, to return factorial values to main)
+        |main func| 
+
+
+        |         |  
+        
+        **IN THE END AN EMPTY STACK IS FORMED INDICATING PROGRAM COMPLETION**
+
