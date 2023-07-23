@@ -127,3 +127,193 @@ so in this initially stack will have
         
         **IN THE END AN EMPTY STACK IS FORMED INDICATING PROGRAM COMPLETION**
 
+
+
+                        **Pass By value**
+int dummy(int a)
+{
+    a++;                            a is var allocated to dummy func
+    cout << a << endl;
+}
+
+            a in dummy() and a in main() in ARE DIFFERENT
+            when dummy(int a) is called by main,another 
+            duplicate of a is created which is inside dummy() 
+
+            we are passing the *value* of a to dummy() so
+            we have 2 a's with different memory address 
+            but same name 
+
+
+int main()
+{
+    int a=5;
+    dummy(a);                       a here is actually a variable from main
+    cout << a << endl;
+}
+
+
+int arr[5]; INITIALIZE the array
+int arr[]={1,2,4}  can also intialize like this, without mentioning size of arr and allocating values as we go
+
+array index starts at 0 so in arr[]={1,2,4} arr[0]=1, arr[1]=2 and so on
+
+uninitailized values are either garbarge values or are 0
+        int arr[5];         //will hvae 4 indexes coz index itself starts at 0
+        for(int i=0;i<5;i++){
+            cout<<arr[i];
+        }
+        o/p: 6422224 6422280 6422476 2005978304 -2145479712  
+            //returns garbarge value
+    
+**But using arr[5] ={0}; will intialize all values in array to 0**
+
+The above only works for 0, if arr[5] = {1} it will only intialize arr[0] to 1 the rest will be 0 or garbarge values
+
+
+To intialize all values we can use std::fill_n
+#include <iostream>
+#include <algorithm>
+
+int main() {
+    int *arr = new int[10];
+    std::fill_n(arr, 10, -1);
+
+    for (size_t i = 0; i < 10; i++) {
+        std::cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+
+
+Printing array with functions: 
+
+int printArray(int arr[], int size)     
+
+//we should know the size of the array or pass it as input as another parameter
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << " ";
+        cout << " "<< i << "\n ";
+    }
+    return 0;
+}
+
+int main()
+{
+    int size = 9;
+    int arr[size] = {0};
+    printArray(arr, size);
+}
+
+
+sizeof() method is used to print the size of any datatype
+
+eg: arr[10] 
+    int sizeOfArr= sizeof(arr)+sizeof(int);
+    // will give 10, coz each index in arr is 4 (so 4*10=40)
+    // size of int is 4
+    // so 40/4 is 10
+
+
+EVEN IF WE INITIALIZE 15 ELEMENTS TO ARRAY BUT ONLY ALLOCATE 2 OR 3 ELEMENTS size_of(ARR) WILL BE 15, which is why we need to pass size as parameter to array function
+
+Unlike var (like int,char etc) arrays can be accessed across functions 
+
+int updateArr(int arr[], int size)
+{
+
+    cout << "in updateArr" << endl;
+
+    //According to pass by value here array should be 5 (in updateArr)
+
+    arr[0] = {5};
+    for (int i = 0; i < 5; i++)
+    {
+        cout << arr[i] << "\t";
+    }
+}
+            VALUE OF arr[0] IS 5 ACROSS THE PROGRAM
+            COZ ARR HAS CONTIGOUS MEMORY AND THEREFORE
+            THE WHOLE arr[] IS PASSED AS IT IS AND UPADATED  
+
+            main func passes the starting address and therefore 
+            the function will not make another copy
+
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5};
+    updateArr(arr, 5);
+
+    //According to pass by value here array should be 1 (in main)
+
+    cout << "in main" << endl;
+    for (int i = 0; i < 5; i++)
+    {
+        cout << arr[i] << "\t";
+    }
+}
+
+o/p: 5,2,3,4,5
+
+To reverse an array we can't use a for loop starting with i=0 and another starting with j=0 and swapping it, we must use start and end var to swap stuff
+
+
+ consider arr[]={1,2,3,4,5,6}
+
+to swap we can just interchange elements, here: 
+    1st iteration: {6,2,3,4,5,1} [swap 1 and 6]
+    2nd iteration: {6,5,3,4,2,1} [swap 2 and 5]
+    3rd iteration: {6,5,2,4,3,1} [swap 3 and 2]
+    4th iteration: {6,5,2,4,3,1} [swap 4 and 4]
+
+
+    int start= 0, end=5;
+    while(start<end){
+        temp=arr[start];
+        arr[start]= arr[end];
+        arr[end]= temp;
+        start++;
+        end--;
+    }
+
+                        **VECTORS**
+
+                        
+Vectors are dynamic arrays, they can vary in size and have extensive and additional methods compared to arrays
+
+to use vectors we need to include #include <vector>
+
+Creating a vector (just use vector<int> since we're using namespace)
+std::vector<int> myVector; // creates an empty vector of integers
+
+
+To access each element we can just use .size() method on the vector
+    
+    vector<int> aVector={0};
+
+    for (int i = 0; i < aVector.size(); i++)
+    {
+        cout << aVector[i] << endl;
+    }
+
+Since vector is dynamically allocated, here the size of the vector is 1
+
+to push elements inside a vector we can use push_back() func
+
+    vector<int> aVector = {0};
+    cout << "before pushing" << endl;
+    cout << "size of vector now is: " << aVector.size() << endl;
+    print(aVector);
+    cout << "after pushing" << endl;
+    aVector.push_back(1);
+    aVector.push_back(2);
+    aVector.push_back(3);
+    print(aVector);
+    cout << "size of vector now is: " << aVector.size() << endl;
+
+
+
+
