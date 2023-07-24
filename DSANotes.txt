@@ -124,3 +124,105 @@ continue; will continue the statement (i.e, if we wnat to skip an iteration etc.
 3. Repeat process till we get 1 or 0 in the end 
 4. reverse the string
 
+                        **Arrays**
+                Pre defined data structure
+
+
+int arr[5]; INITIALIZE the array
+int arr[]={1,2,4}  can also intialize like this, without mentioning size of arr and allocating values as we go
+
+array index starts at 0 so in arr[]={1,2,4} arr[0]=1, arr[1]=2 and so on
+
+uninitailized values are either garbarge values or are 0
+        int arr[5];         //will hvae 4 indexes coz index itself starts at 0
+        for(int i=0;i<5;i++){
+            cout<<arr[i];
+        }
+        o/p: 6422224 6422280 6422476 2005978304 -2145479712  
+            //returns garbarge value
+    
+**But using arr[5] ={0}; will intialize all values in array to 0**
+
+The above only works for 0, if arr[5] = {1} it will only intialize arr[0] to 1 the rest will be 0 or garbarge values
+
+
+To intialize all values we can use std::fill_n
+#include <iostream>
+#include <algorithm>
+
+int main() {
+    int *arr = new int[10];
+    std::fill_n(arr, 10, -1);
+
+    for (size_t i = 0; i < 10; i++) {
+        std::cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+
+
+Linear Search: Searches elements one by one and checks for key, O(n)
+
+Binary Search: It works only in inc or decreasing func (sorted arrays) O(log n)
+
+3 elements in a binary search, start, end and mid element
+
+    array: [1, 2, 3, 4, 5].
+    let's say the key is 5.
+Now, let's start the binary search algorithm:
+
+Step 1:
+
+Set start to the index of the first element (0) and high to the index of the last element (4) (arr.size()-1) of the array.
+low = 0
+high = 4
+Calculate the mid index as the average of low and high.
+mid = (0 + 4) / 2 = 2
+
+Compare the value at index mid (element 3) with the key (3).
+array[mid] = array[2] = 3
+
+Which is not the key, (key =5) and here key is >3 
+we now need to shift the start element to (mid+1), so 
+        st= mid+1; (2+1=3)
+
+the subarray (4,5) is now considered (coz start is pointing to 3 or 3rd index of the array)
+
+from [4,5] (index 3 and 4 are consider for mid = (3+4)/2 => 3)
+
+arr[3]: 4 != key and the value is < key(5) 
+
+since key > we shift start again to mid+1 (3+1=4)
+
+sub array [5] is retuned and mid is Calculated and it's == to key and value is returned 
+
+SIMILARLY IF KEY< ARR[mid] we would shift end to mid-1
+
+IF (st>end) it means that start or end is now pointing to a garbarge value and that key is not found
+
+
+                        **BINARY SEARCH** 
+                         
+ int st = 0, end = arr.size() - 1, mid;
+    mid = (end + st) / 2;
+    while (st <= end)
+    {
+        if (arr[mid] == key)
+        {
+            cout << "in binSearch func, key found" << endl;
+            return mid;
+        }
+        if (key > arr[mid])
+        {
+            st = mid + 1;
+        }
+        if (key < arr[mid])
+        {
+            end = mid - 1;
+        }
+        mid = (st + end) / 2;
+    }
+    return -1; //element is not found 
+
+
